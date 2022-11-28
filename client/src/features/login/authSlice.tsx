@@ -11,7 +11,7 @@ import { Login, LoginResponse } from 'Models'
 
 const initialState: LoginResponse = {
   accessToken: null,
-  user: null,
+  username: null,
   permission: null
 }
 
@@ -33,9 +33,9 @@ const authSlice = createSlice({
         // console.log('fulfilled', action)
         console.log(action, '----------------------------action')
         const {
-          payload: { accessToken, user, permission }
+          payload: { accessToken, username, permission }
         } = action || {}
-        state.user = user
+        state.username = username
         state.permission = permission
         state.accessToken = accessToken
         // state.permission = loginAdminWithSSOApp.permission
@@ -59,6 +59,6 @@ export default authSlice.reducer
 
 export const selectAccessToken = (state: RootState) => state.auth.accessToken
 
-export const selectUserLoggedIn = (state: RootState) => state.auth.user
+export const selectUserLoggedIn = (state: RootState) => state.auth.username
 
 export const selectUserPermission = (state: RootState) => state.auth.permission

@@ -15,13 +15,14 @@ const AvatarComponent = () => {
     }
   }
 
+  console.log(userCurrent, '---------------------------userCurrent')
   const menu = (
     <Menu
       items={[
         {
           label: (
             <>
-              <UserOutlined className="mr-2" /> {userCurrent?.username}
+              <UserOutlined className="mr-2" /> {userCurrent}
             </>
           ),
           key: '0'
@@ -57,7 +58,7 @@ const AvatarComponent = () => {
     <Dropdown overlay={menu} trigger={['click']}>
       <a onClick={(e) => console.log(1)}>
         <Avatar shape="circle" size="default">
-          {userCurrent?.username[0]}
+          {userCurrent ? userCurrent[0] : null}
         </Avatar>
       </a>
     </Dropdown>

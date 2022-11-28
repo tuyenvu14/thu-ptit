@@ -8,7 +8,7 @@ declare module 'Models' {
 
   export interface LoginResponse {
     accessToken: any
-    user: any
+    username: any
     permission: any
   }
 }

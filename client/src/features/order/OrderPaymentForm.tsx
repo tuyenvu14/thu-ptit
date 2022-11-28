@@ -26,6 +26,15 @@ export const OrderPaymentForm = (props: OrderPaymentProps) => {
     })
   }
 
+  const handleTotalDateHire = (x: any, y: any) => {
+    const date1 = new Date(x)
+    const date2 = new Date(y)
+    //@ts-ignore
+    const diffTime = Math.abs(date1 - date2)
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1
+    return diffDays
+  }
+
   const handleDataTable = (data: any) => {
     const dataTable: any[] = []
     if (data?.lichSuDonHangList && data?.lichSuDonHangList?.length > 0) {
@@ -97,13 +106,17 @@ export const OrderPaymentForm = (props: OrderPaymentProps) => {
       dataIndex: 'gioVaoSan',
       title: 'Giờ vào sân',
       align: 'center',
-      search: false
+      search: false,
+      render: (text: any) =>
+        text && text !== '-' ? datetime.initNewVnDate(text) : '-'
     },
     {
       dataIndex: 'gioRaSan',
       title: 'Giờ ra sân',
       search: false,
-      align: 'center'
+      align: 'center',
+      render: (text: any) =>
+        text && text !== '-' ? datetime.initNewVnDate(text) : '-'
     },
     {
       dataIndex: 'ngay',
@@ -151,9 +164,6 @@ export const OrderPaymentForm = (props: OrderPaymentProps) => {
               ? 'Đã thanh toán'
               : 'Chưa thanh toán'}
           </Tag>
-          {/* {data?.trangThaiThanhToan === 'True'
-            ? 'Đã thanh toán'
-            : 'Chưa thanh toán'} */}
         </Descriptions.Item>
         <Descriptions.Item label="Tổng tiền">
           {utils.convertNumberToVND(data?.tongTien)}
@@ -184,16 +194,16 @@ export const OrderPaymentForm = (props: OrderPaymentProps) => {
                 {datetime.initNewVnDate(data?.ngayThueTuNgay)}
               </Descriptions.Item>
               <Descriptions.Item label="Thuê đến ngày">
-                {datetime.initNewVnDate(data?.ngayThueDenNgay)}
+                {datetime.initNewVnDateTime(data?.ngayThueDenNgay)}
               </Descriptions.Item>
-              {/* <Descriptions.Item label="Tổng tiền thuê sân">
-                {utils.convertNumberToVND(
-                  datetime.initNewVnDate(data?.ngayThueTuNgay) -
-                    datetime.initNewVnDate(data?.ngayThueDenNgay)
-                )}
-              </Descriptions.Item> */}
+
               <Descriptions.Item label="Tổng tiền thuê sân">
-                {utils.convertNumberToVND(600000)}
+                {utils.convertNumberToVND(
+                  handleTotalDateHire(
+                    data?.ngayThueDenNgay,
+                    data?.ngayThueTuNgay
+                  ) * data?.sanBongKhungGio?.gia
+                )}
               </Descriptions.Item>
             </Descriptions>
           </div>

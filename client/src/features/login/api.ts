@@ -6,18 +6,18 @@ const apiName = 'login'
 export const loginApi = createApi({
   reducerPath: apiName,
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3002'
+    baseUrl: 'http://localhost:8080/users'
   }),
   tagTypes: [apiName],
   endpoints: (build) => ({
     loginAdmin: build.mutation<LoginResponse, Partial<Login>>({
-      query: (body) => ({
-        url: `/login`,
+      query: (params) => ({
+        url: `/signin`,
         headers: {
           'Access-Control-Allow-Origin': 'true'
         },
         method: 'POST',
-        body
+        params
       })
     })
   })

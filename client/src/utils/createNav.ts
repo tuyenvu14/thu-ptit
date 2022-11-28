@@ -6,11 +6,17 @@ export const createNav = (data: Navigator) => {
   const { name, nav } = data
 
   const permission = JSON.parse(
-    JSON.parse(localStorage['persist:rootAdmin'])?.auth
+    JSON.parse(
+      localStorage['persist:rootAdmin']
+        ? localStorage['persist:rootAdmin']
+        : {
+            auth: '{"accessToken":null,"user":null,"permission":null}',
+            _persist: '{"version":-1,"rehydrated":true}'
+          }
+    )?.auth
   )?.permission
-  // const permission = useSelector(selectUserPermission)
 
-  // console.log(permission, '----------------------------------permission')
+  // const permission = useSelector(selectUserPermission)
 
   // const resources: any = {}
   // const routes: any = {}
@@ -45,7 +51,7 @@ export const createNav = (data: Navigator) => {
       })
     }
 
-    if (nav.isMenu && permission.includes(nav?.resources)) {
+    if (nav.isMenu && permission?.includes(nav?.resources)) {
       const menu: any = {
         icon: nav?.icon,
         path: nav?.path,
