@@ -15,6 +15,7 @@ type ParamsType = {
   pagingSize: string
   total: number
   linkCreate?: string
+  titleCreate?: string
   linkEdit?: string
   onSearch: (value: any) => void
   onChangePageSize: (index: number, size: number) => void
@@ -55,7 +56,8 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
     resource,
     loading,
     customSearchBtn,
-    customButtonCreate
+    customButtonCreate,
+    titleCreate
   } = props
 
   const [isVisible, setIsVisible] = useState(false)
@@ -125,7 +127,7 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
           linkCreate ? (
             // <AuthorizedComponent authority={resource}>
             <Button type="primary" onClick={() => history.push(linkCreate)}>
-              Tạo đơn hàng mới
+              {titleCreate}
             </Button>
           ) : // </AuthorizedComponent>
           null,

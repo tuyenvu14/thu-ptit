@@ -215,6 +215,7 @@ const OrderList = () => {
         columns={columns}
         dataSource={data?.orders}
         linkCreate={`order/create`}
+        titleCreate={'Tạo đơn hàng mới'}
         onSearch={(value) => handleSearchClick(value)}
         total={data?.totalCount}
         pagingSize={searchParams?.pageSize?.toString()}

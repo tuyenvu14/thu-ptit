@@ -11,7 +11,7 @@ export const FORM_ITEM_LAYOUT = {
 }
 
 export const DEFAULT_PAGE_INDEX = 0
-export const DEFAULT_PAGE_SIZE = 30
+export const DEFAULT_PAGE_SIZE = 5
 export const DEFAULT_PAGE_SIZE_SERVICE = 50
 
 // datetime
@@ -36,7 +36,6 @@ export const DEFAULT_FORMAT_HOURS = 'HH:mm a'
 export const DEFAULT_FORMAT_UTC_DATE_TIME = 'MM/DD/YYYY HH:mm'
 
 export const DEFAULT_SPACE_REPORT_DATE = 2 * 24 * 60 * 60 * 1000
-
 
 export const MESSAGE_CREATED_SUCCESS = 'Tạo thành công'
 
